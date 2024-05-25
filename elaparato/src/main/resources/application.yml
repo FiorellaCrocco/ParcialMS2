@@ -11,3 +11,10 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+dh:
+  keycloak:
+    serverUrl: http://localhost:8080
+    realm: el-aparato
+    clientId: users-client
+    clientSecret: MJ0b8nbQter2gFTuROrXsm6S95Kpkafr
