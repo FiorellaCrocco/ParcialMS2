@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS elaparato;
-
 -- Para poder ejecutar este archivo se debió haber creado anteriormente la base de datos elaparato
 -- de igual manera se tuvo que haber ejecutado el proyecto de Spring Boot y creado las siguientes tablas de forma automática:
 -- producto, venta, producto_lista_ventas, producto_seq, venta_seq
