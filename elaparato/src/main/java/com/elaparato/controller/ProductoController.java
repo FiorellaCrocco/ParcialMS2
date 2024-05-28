@@ -2,6 +2,8 @@ package com.elaparato.controller;
 import com.elaparato.model.Producto;
 import com.elaparato.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +30,25 @@ public class ProductoController {
         return prodServ.getProductos();
     }
 
+    // Obtiene un producto por su ID y retorna su contenido
+    @GetMapping("/productos/{id}")
+    public Producto getProductById(@PathVariable Integer id){
+        Producto producto = prodServ.findProducto(id);
+        return producto;
+    }
+
    // Modificar los datos de un producto existente y
    // retorna un mensaje indicando que el producto fue editado correctamente.
-    @PutMapping("/productos/edit")
-    public String editProducto(@RequestBody Producto prod) {
+    @PutMapping("/productos/edit/{id}")
+    public String editProducto(@PathVariable Integer id, @RequestBody Producto prod) {
         prodServ.editProducto(prod);
         return "Producto editado correctamente";
+    }
+
+    // Elimina un producto existente
+    @DeleteMapping("/productos/{id}")
+    public String deleteProducto(@PathVariable Integer id){
+        prodServ.deleteProducto(id);
+        return "Producto eliminado correctamente";
     }
 }

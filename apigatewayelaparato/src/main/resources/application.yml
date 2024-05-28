@@ -1,0 +1,28 @@
+server:
+  port: 9090
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          api-gateway-service:
+            issuer-uri: http://localhost:8080/realms/el-aparato-crocco  # URL del servidor de autenticacion que emite tokens
+        registration:
+          api-gateway-service:
+           # provider: api-gateway-service  # Referencia al proveedor configurado anteriormente
+            client-id: api-gateway-client  # ID del cliente registrado en el servidor de autenticacion
+            client-secret: B2URJSowDK3m0rHqhMsjiW4QQK5JSCNh  # Secreto del cliente registrado en el servidor de autenticacion
+            scope: openid  # Solicita el alcance 'openid' para habilitar la autenticacion basada en OpenID Connect
+            authorization-grant-type: authorization_code  # Tipo de concesion para la autorizacion; en este caso, codigo de autorizacion
+            redirect-uri: http://localhost:9090/login/oauth2/code/keycloak  # URI de redireccionamiento tras la autenticacion
+
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay  # Filtro para reenviar tokens JWT a otros servicios
+      routes:
+        - id: elaparato-service  # Identificador de la ruta
+          predicates:
+            - Path=/**  # Patron de ruta que activa esta ruta
+          uri: http://localhost:8081  # Direccion del servicio al que se redirigen las solicitudes

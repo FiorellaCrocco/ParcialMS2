@@ -3,6 +3,8 @@ package com.elaparato.controller;
 import com.elaparato.model.Venta;
 import com.elaparato.service.IVentaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,12 +31,24 @@ public class VentaController {
         return ventServ.getVentas();
     }
 
+    @GetMapping("/ventas/{id}")
+    public Venta getVentaById(@PathVariable Integer id){
+        Venta venta = ventServ.findVenta(id);
+        return venta;
+    }
+
     // Modificar los datos de una venta existente y
     // retorna un mensaje indicando que la venta fue editada correctamente.
-    @PutMapping("/ventas/edit")
-    public String editVenta(@RequestBody Venta vent) {
+    @PutMapping("/ventas/edit/{id}")
+    public String editVenta(@PathVariable Integer id, @RequestBody Venta vent) {
         ventServ.editVenta(vent);
         return "Venta editada correctamente";
     }
 
+    // Elimina un venta existente
+    @DeleteMapping("/ventas/{id}")
+    public String deleteProducto(@PathVariable Integer id){
+        ventServ.deleteVenta(id);
+        return "Venta eliminado correctamente";
+    }
 }
