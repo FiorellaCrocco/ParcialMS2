@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9090  # Define el puerto en el que el servidor escuchará las solicitudes
 
 spring:
   security:
@@ -10,7 +10,6 @@ spring:
             issuer-uri: http://localhost:8080/realms/el-aparato-crocco  # URL del servidor de autenticacion que emite tokens
         registration:
           api-gateway-service:
-           # provider: api-gateway-service  # Referencia al proveedor configurado anteriormente
             client-id: api-gateway-client  # ID del cliente registrado en el servidor de autenticacion
             client-secret: B2URJSowDK3m0rHqhMsjiW4QQK5JSCNh  # Secreto del cliente registrado en el servidor de autenticacion
             scope: openid  # Solicita el alcance 'openid' para habilitar la autenticacion basada en OpenID Connect
