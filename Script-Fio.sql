@@ -25,7 +25,7 @@ VALUES
   
  
 -- Insertar los productos comprados en cada venta
-INSERT INTO elaparato.producto_lista_ventas (lista_productos_id, lista_ventas_id_venta)
+INSERT INTO elaparato.producto_lista_ventas (lista_productos_id, lista_ventas_id)
 VALUES
   (1, 1),
   (2, 1),
@@ -40,11 +40,3 @@ VALUES
   (5, 4),
   (3, 5),
   (4, 5);
-
--- Modificar las secuencias de producto_seq
-UPDATE producto_seq
-SET next_val = 6;
-
--- Modificar las secuencias de venta_seq
-UPDATE venta_seq
-SET next_val = 6;
