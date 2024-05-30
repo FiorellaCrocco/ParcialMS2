@@ -22,9 +22,9 @@ En mi realm "el-aparato-crocco" creé roles tanto a nivel de cliente como de rei
 	3. Asignamos al cliente los roles: *rol_administrador, rol_repositor y rol_vendedor*.
 
 ## En Realm Roles creé 3 roles:
-	1. app_administrador relacionado con rol_administrador (rol de cliente).
-	2. app_repositor relacionado con rol_repositor (rol de cliente).
-	3. app_vendedor relacionado con rol_vendedor (rol de cliente).
+	1. Creé app_administrador con "Composite" en "true" dado que le asocié el rol "rol_administrador" del cliente "api-gateway-client", además le configuré en "Users in role" el usuario "administrador".
+	2. Creé app_repositor con "Composite" en "true" dado que le asocié el rol "rol_repositor" del cliente "api-gateway-client", además le configuré en "Users in role" el usuario "repositor".
+	3. Creé app_vendedor  con "Composite" en "true" dado que le asocié el rol "rol_vendedor" del cliente "api-gateway-client", además le configuré en "Users in role" el usuario "vendedor".
 
 ### Aclaraciones 
 
