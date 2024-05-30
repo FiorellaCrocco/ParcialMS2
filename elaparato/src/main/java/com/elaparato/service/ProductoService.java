@@ -1,9 +1,9 @@
 package com.elaparato.service;
 import com.elaparato.model.Producto;
 import com.elaparato.repository.IProductoRepository;
+import com.elaparato.repository.IVentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 // Implementación concreta de la interfaz IProductoService, gestionando operaciones de
@@ -14,6 +14,9 @@ public class ProductoService implements IProductoService{
     // Inyección del repositorio que gestiona las operaciones CRUD para productos.
     @Autowired
     private IProductoRepository prodRepo;
+
+    @Autowired
+    private IVentaRepository ventaRepository;
 
     // Retorna una lista de todos los productos almacenados en la base de datos.
     @Override

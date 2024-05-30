@@ -12,7 +12,7 @@ public interface IVentaService {
     public List<Venta> getVentas();
 
     // Método para guardar una nueva venta.
-    public void saveVenta(Venta vent);
+    public Venta saveVenta(Venta vent);
 
     // Método para eliminar una venta.
     public void deleteVenta(int id);
@@ -21,6 +21,6 @@ public interface IVentaService {
     public Venta findVenta(int id);
 
     // Método para editar una venta.
-    public void editVenta(Venta vent);
+    public void editVenta(int id, Venta newData);
 
 }

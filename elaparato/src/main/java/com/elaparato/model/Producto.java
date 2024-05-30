@@ -13,16 +13,21 @@ import java.util.List;
 public class Producto {
 
     @Id // Anotación para indicar que este campo es la clave primaria de la entidad
-    @GeneratedValue(strategy= GenerationType.SEQUENCE) // Define que el ID es generado automáticamente usando una secuencia
+    @GeneratedValue(strategy= GenerationType.IDENTITY) // Define que el ID es generado automáticamente autoincremental
     private int id;  // Identificador único del producto
 
     private String nombre; // Nombre del producto
     private String descripcion; // Descripción del producto
-    private int precio; // Precio del producto
+    private Double precio; // Precio del producto
     private int cantidad; // Cantidad en inventario del producto
 
-    @ManyToMany // Define una relación de muchos a muchos con la entidad Venta
-    @JsonIgnore // Evita problemas de recursión infinita al serializar la entidad a JSON
+    @ManyToMany(cascade = CascadeType.ALL) // Define una relación de muchos a muchos con la entidad Venta
+    @JsonIgnore  // Evita problemas de recursión infinita al serializar la entidad a JSON
+    @JoinTable(
+            name = "producto_lista_ventas",
+            joinColumns = @JoinColumn(name = "lista_productos_id"),
+            inverseJoinColumns = @JoinColumn(name = "lista_ventas_id")
+    )
     private List<Venta> listaVentas; // Lista de ventas en las que el producto ha sido incluido
 
     // Constructor sin parámetros necesario para JPA
@@ -30,7 +35,7 @@ public class Producto {
     }
 
     // Constructor con parámetros para inicializar el objeto Producto
-    public Producto(int id, String nombre, String descripcion, int precio, int cantidad, List<Venta> listaVentas) {
+    public Producto(int id, String nombre, String descripcion, Double precio, int cantidad, List<Venta> listaVentas) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
